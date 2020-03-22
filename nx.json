@@ -14,9 +14,12 @@
     "ng-refs": {
       "tags": []
     },
-    "ng-refs-e2e": {
+    "ng-refs-demo": {
+      "tags": []
+    },
+    "ng-refs-demo-e2e": {
       "tags": [],
-      "implicitDependencies": ["ng-refs"]
+      "implicitDependencies": ["ng-refs-demo"]
     }
   }
 }
