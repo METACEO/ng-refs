@@ -1,5 +1,5 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { WindowRef } from '@ng-refs/ng-refs';
+import { WindowRef } from 'ng-refs';
 
 import { AppComponent } from './app.component';
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WindowRef } from '@ng-refs/ng-refs';
+import { WindowRef } from 'ng-refs';
 
 @Component({
   selector: 'ng-refs-demo-root',

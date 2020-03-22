@@ -16,7 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ng-refs/ng-refs": ["libs/ng-refs/src/index.ts"]
+      "ng-refs": ["libs/ng-refs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgRefsModule } from '@ng-refs/ng-refs';
+import { NgRefsModule } from 'ng-refs';
 
 import { AppComponent } from './app.component';
 
