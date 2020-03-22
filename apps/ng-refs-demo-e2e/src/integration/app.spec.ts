@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('ng-refs', () => {
+describe('ng-refs-demo', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
@@ -8,6 +8,6 @@ describe('ng-refs', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to ng-refs!');
+    getGreeting().contains('Welcome to ng-refs-demo!');
   });
 });
