@@ -2,15 +2,15 @@
 
 Practice better dependency injection of browser APIs within your Angular components and services.
 
-For example, don't directly use the `window` object in your Angular components or services. Instead use the injected `WindowRef` provider that this package provides.
+For example, don't directly use the `window` object in your Angular components or services. Instead use the injected `WindowRef` provider that `ng-refs` offers.
 
 In this [Nx](https://nx.dev) monorepo, you can find the following:
 
 - The library source code [[libs](./libs/ng-refs)]
-- A consuming Angular application and unit tests [[apps](./apps/ng-refs-demo)]
+- An example consuming Angular application and unit tests [[apps](./apps/ng-refs-demo)]
 - An e2e test suite [[apps](./apps/ng-refs-demo-e2e)]
 
-## Install Angular references
+## Install ng-refs for Angular references
 
 Install these references via [NPM](https://www.npmjs.com/package/ng-refs) or [Yarn](https://yarnpkg.com/package/ng-refs) into your Angular project.
 
