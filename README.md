@@ -1,5 +1,7 @@
 # ng-refs
 
+![Publish ng-refs Library](https://github.com/METACEO/ng-refs/workflows/Publish%20ng-refs%20Library/badge.svg?branch=master)
+
 Practice better dependency injection of browser APIs within your Angular components and services.
 
 For example, don't directly use the `window` object in your Angular components or services. Instead use the injected `WindowRef` provider that `ng-refs` offers.
