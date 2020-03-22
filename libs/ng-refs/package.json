@@ -1,6 +1,32 @@
 {
   "name": "ng-refs",
   "version": "0.0.1",
+  "description": "Practice better dependency injection of browser APIs within your Angular components and services.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/METACEO/ng-refs.git"
+  },
+  "author": {
+    "name": "James Allen",
+    "email": "the@spiciest.dev",
+    "url": "https://the.spiciest.dev"
+  },
+  "keywords": [
+    "ng-refs",
+    "angular",
+    "di",
+    "dependency",
+    "injection",
+    "typescript",
+    "browser",
+    "window",
+    "nx"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/METACEO/ng-refs/issues"
+  },
+  "homepage": "https://github.com/METACEO/ng-refs#readme",
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
