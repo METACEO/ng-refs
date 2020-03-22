@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WindowRef } from '@ng-refs/ng-refs';
 
 @Component({
   selector: 'ng-refs-demo-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng-refs-demo';
+  constructor(private readonly windowRef: WindowRef) {
+  }
+  public windowRefAlert(): void {
+    this.windowRef.native.alert('hello world');
+  }
 }

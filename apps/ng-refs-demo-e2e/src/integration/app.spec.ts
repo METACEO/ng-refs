@@ -1,13 +1,17 @@
-import { getGreeting } from '../support/app.po';
-
 describe('ng-refs-demo', () => {
-  beforeEach(() => cy.visit('/'));
+  describe('WindowRef', () => {
+    let windowAlertStub: Cypress.Agent<sinon.SinonStub>;
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+    beforeEach(() => cy.visit('/', {
+      onBeforeLoad(window) {
+        windowAlertStub = cy.stub(window, 'alert').as('windowAlert');
+      }
+    }));
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to ng-refs-demo!');
+    it('should open a window alert', () => {
+      cy.get('#windowRefAlert')
+        .click()
+        .then(() => expect(windowAlertStub).to.be.calledWith('hello world'));
+    });
   });
 });

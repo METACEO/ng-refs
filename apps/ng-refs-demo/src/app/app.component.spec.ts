@@ -1,31 +1,39 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { WindowRef } from '@ng-refs/ng-refs';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let windowRef: WindowRef;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [WindowRef],
       declarations: [AppComponent]
     }).compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+    windowRef = TestBed.inject(WindowRef);
   }));
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ng-refs-demo'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ng-refs-demo');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to ng-refs-demo!'
-    );
+  describe('windowRefAlert', () => {
+    it('should call the window\'s alert method', () => {
+      // Create a fake window object that will satisfy our
+      // component and make sure to return it.
+      const mockWindow = { alert: () => void 0 } as Window;
+      jest.spyOn(windowRef, 'native', 'get').mockReturnValue(mockWindow);
+      // Stub out the alert method using our mocked out
+      // window object from above.
+      const spy = spyOn(mockWindow, 'alert').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.windowRefAlert();
+      expect(spy).toHaveBeenCalledWith('hello world');
+    });
   });
 });
