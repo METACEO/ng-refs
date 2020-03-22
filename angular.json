@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-refs-demo:build"
+            "browserTarget": "ng-refs-demo:build",
+            "liveReload": false
           },
           "configurations": {
             "production": {

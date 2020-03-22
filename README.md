@@ -25,7 +25,7 @@ You can then import `NgRefsModule` into your Angular application. You can find a
 
 ## Serve the demo for development
 
-Run `start` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `start` for a dev server. Navigate to http://localhost:4200/.
 
 ## Build the library for production
 
