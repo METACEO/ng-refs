@@ -1,0 +1,22 @@
+{
+  "npmScope": "ng-refs",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "ng-refs": {
+      "tags": []
+    },
+    "ng-refs-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ng-refs"]
+    }
+  }
+}
