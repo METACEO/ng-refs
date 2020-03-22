@@ -1,24 +1,45 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { WindowRef } from 'ng-refs';
+import { ConsoleRef, WindowRef } from 'ng-refs';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
+  let consoleRef: ConsoleRef;
   let windowRef: WindowRef;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [WindowRef],
+      providers: [
+        ConsoleRef,
+        WindowRef
+      ],
       declarations: [AppComponent]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
+    consoleRef = TestBed.inject(ConsoleRef);
     windowRef = TestBed.inject(WindowRef);
   }));
 
   it('should create the app', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
+  });
+
+  describe('consoleRefLog', () => {
+    it('should call the console\'s log method', () => {
+      // Create a fake console object that will satisfy our
+      // component and make sure to return it.
+      const mockConsole = { log: () => void 0 } as Console;
+      jest.spyOn(consoleRef, 'native', 'get').mockReturnValue(mockConsole);
+      // Stub out the log method using our mocked out
+      // console object from above.
+      const spy = spyOn(mockConsole, 'log').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.consoleRefLog();
+      expect(spy).toHaveBeenCalled();
+    });
   });
 
   describe('windowRefAlert', () => {

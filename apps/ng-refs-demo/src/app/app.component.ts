@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WindowRef } from 'ng-refs';
+import { ConsoleRef, WindowRef } from 'ng-refs';
 
 @Component({
   selector: 'ng-refs-demo-root',
@@ -7,7 +7,11 @@ import { WindowRef } from 'ng-refs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private readonly windowRef: WindowRef) {
+  constructor(private readonly consoleRef: ConsoleRef,
+              private readonly windowRef: WindowRef) {
+  }
+  public consoleRefLog(): void {
+    this.consoleRef.native.log(`The time is: ${new Date()}`);
   }
   public windowRefAlert(): void {
     this.windowRef.native.alert('hello world');
