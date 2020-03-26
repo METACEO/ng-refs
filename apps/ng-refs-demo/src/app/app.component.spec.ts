@@ -1,23 +1,26 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { ConsoleRef, WindowRef } from 'ng-refs';
+import { ConsoleRef, LocationRef, WindowRef } from 'ng-refs';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let consoleRef: ConsoleRef;
+  let locationRef: LocationRef;
   let windowRef: WindowRef;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
         ConsoleRef,
+        LocationRef,
         WindowRef
       ],
       declarations: [AppComponent]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     consoleRef = TestBed.inject(ConsoleRef);
+    locationRef = TestBed.inject(LocationRef);
     windowRef = TestBed.inject(WindowRef);
   }));
 
@@ -39,6 +42,19 @@ describe('AppComponent', () => {
       // stub above has been called correctly.
       fixture.componentInstance.consoleRefLog();
       expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('locationRefHashSet', () => {
+    it('should set the location\'s hash attribute', () => {
+      // Create a fake location object that will satisfy
+      // our component and make sure to return it.
+      const mockLocation = { hash: null } as Location;
+      jest.spyOn(locationRef, 'native', 'get').mockReturnValue(mockLocation);
+      // Call the component's method and make sure our
+      // hash value gets changed.
+      fixture.componentInstance.locationRefHashSet();
+      expect(mockLocation.hash).not.toBeNull();
     });
   });
 

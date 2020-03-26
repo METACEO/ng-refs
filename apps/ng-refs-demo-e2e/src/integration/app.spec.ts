@@ -27,6 +27,22 @@ describe('ng-refs-demo', () => {
         });
     });
   });
+  describe('LocationRef', () => {
+    let locationReference: Location;
+
+    beforeEach(() => cy.visit('/', {
+      onBeforeLoad(window) {
+        locationReference = window.location;
+      }
+    }));
+
+    it('should change the location\'s hash value', () => {
+      const originalHashValue = locationReference.hash;
+      cy.get('#locationRefHashSet')
+        .click()
+        .then(() => expect(locationReference.hash).to.not.be.equal(originalHashValue));
+    });
+  });
   describe('WindowRef', () => {
     let windowAlertStub: Cypress.Agent<sinon.SinonStub>;
 
