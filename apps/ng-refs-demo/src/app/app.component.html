@@ -2,6 +2,13 @@
 
 <button id="consoleRefLog" (click)="consoleRefLog()">console.log('The time is: ...')</button>
 
+<h1>LocalstorageRef</h1>
+
+<p id="localstorageRefTimestamp">timestamp: {{localstorageRefTimestamp || 'undefined'}}</p>
+
+<button id="localstorageRefSet" (click)="localstorageRefSet()">localStorage.setItem('timestamp', ...)</button>
+<button id="localstorageRefClear" (click)="localstorageRefClear()">localStorage.clear()</button>
+
 <h1>LocationRef</h1>
 
 <button id="locationRefHashSet" (click)="locationRefHashSet()">location.hash = '...'</button>

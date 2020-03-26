@@ -1,11 +1,21 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { ConsoleRef, LocationRef, WindowRef } from 'ng-refs';
+import { ConsoleRef, LocalstorageRef, LocationRef, WindowRef } from 'ng-refs';
 
 import { AppComponent } from './app.component';
+
+class MockLocalStorageRef {
+  clear = () => void 0;
+  getItem = () => void 0;
+  setItem = () => void 0;
+  get native() {
+    return this;
+  }
+}
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let consoleRef: ConsoleRef;
+  let localstorageRef: MockLocalStorageRef;
   let locationRef: LocationRef;
   let windowRef: WindowRef;
 
@@ -14,12 +24,17 @@ describe('AppComponent', () => {
       providers: [
         ConsoleRef,
         LocationRef,
-        WindowRef
+        WindowRef,
+        {
+          provide: LocalstorageRef,
+          useClass: MockLocalStorageRef
+        }
       ],
       declarations: [AppComponent]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     consoleRef = TestBed.inject(ConsoleRef);
+    localstorageRef = TestBed.inject(LocalstorageRef) as unknown as MockLocalStorageRef;
     locationRef = TestBed.inject(LocationRef);
     windowRef = TestBed.inject(WindowRef);
   }));
@@ -41,6 +56,27 @@ describe('AppComponent', () => {
       // Call the component's method and make sure our
       // stub above has been called correctly.
       fixture.componentInstance.consoleRefLog();
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('localstorageRef', () => {
+    it('should set a localstorage item', () => {
+      // Stub out the setItem method using our mocked
+      // out localStorage object from above.
+      const spy = spyOn(localstorageRef, 'setItem').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.localstorageRefSet();
+      expect(spy).toHaveBeenCalled();
+    });
+    it('should clear localstorage items', () => {
+      // Stub out the clear method using our mocked
+      // out localStorage object from above.
+      const spy = spyOn(localstorageRef, 'clear').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.localstorageRefClear();
       expect(spy).toHaveBeenCalled();
     });
   });

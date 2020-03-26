@@ -28,6 +28,23 @@ describe('ng-refs-demo', () => {
     });
   });
   describe('LocationRef', () => {
+
+    beforeEach(() => cy.visit('/'));
+
+    it('should change the localstorage timestamp', () => {
+      cy.get('#localstorageRefTimestamp').should('have.text', 'timestamp: undefined');
+      cy.get('#localstorageRefSet').click();
+      cy.get('#localstorageRefTimestamp').should('not.have.text', 'timestamp: undefined')
+    });
+    it('should clear the localstorage items', () => {
+      cy.get('#localstorageRefTimestamp').should('have.text', 'timestamp: undefined');
+      cy.get('#localstorageRefSet').click();
+      cy.get('#localstorageRefTimestamp').should('not.have.text', 'timestamp: undefined');
+      cy.get('#localstorageRefClear').click();
+      cy.get('#localstorageRefTimestamp').should('have.text', 'timestamp: undefined');
+    });
+  });
+  describe('LocationRef', () => {
     let locationReference: Location;
 
     beforeEach(() => cy.visit('/', {
