@@ -4,6 +4,13 @@
 
 Practice better dependency injection of browser APIs within your Angular components and services.
 
+Similar to Angular's [own `DOCUMENT` token](https://angular.io/api/common/DOCUMENT), the `ng-refs` package includes some other commonly used browser APIs wrapped up as Angular providers:
+
+- `ConsoleRef`
+- `LocalStorageRef`
+- `LocationRef`
+- `WindowRef`
+
 For example, don't directly use the `window` object in your Angular components or services. Instead use the injected `WindowRef` provider that `ng-refs` offers.
 
 In this [Nx](https://nx.dev) monorepo, you can find the following:
