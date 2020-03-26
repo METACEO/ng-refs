@@ -1,6 +1,6 @@
 describe('ng-refs-demo', () => {
   describe('ConsoleRef', () => {
-    let consoleLogStub: Cypress.Agent<sinon.SinonStub>;
+    let consoleLogStub: sinon.SinonStub;
     let logs = [];
 
     beforeEach(() => cy.visit('/', {
@@ -10,7 +10,9 @@ describe('ng-refs-demo', () => {
         // logs that our stub receives.
         logs = [];
         const fakeLogger = log => logs.push(log);
-        consoleLogStub = cy.stub(window.console, 'log', fakeLogger).as('consoleLog');
+        consoleLogStub = cy.stub(window.console, 'log')
+          .as('consoleLog')
+          .callsFake(fakeLogger);
       }
     }));
 
