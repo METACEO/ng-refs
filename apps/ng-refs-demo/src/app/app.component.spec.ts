@@ -1,9 +1,18 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { ConsoleRef, LocalstorageRef, LocationRef, WindowRef } from 'ng-refs';
+import { ConsoleRef, LocalstorageRef, LocationRef, SessionstorageRef, WindowRef } from 'ng-refs';
 
 import { AppComponent } from './app.component';
 
 class MockLocalStorageRef {
+  clear = () => void 0;
+  getItem = () => void 0;
+  setItem = () => void 0;
+  get native() {
+    return this;
+  }
+}
+
+class MockSessionStorageRef {
   clear = () => void 0;
   getItem = () => void 0;
   setItem = () => void 0;
@@ -17,6 +26,7 @@ describe('AppComponent', () => {
   let consoleRef: ConsoleRef;
   let localstorageRef: MockLocalStorageRef;
   let locationRef: LocationRef;
+  let sessionStorageRef: MockSessionStorageRef;
   let windowRef: WindowRef;
 
   beforeEach(async(() => {
@@ -28,6 +38,10 @@ describe('AppComponent', () => {
         {
           provide: LocalstorageRef,
           useClass: MockLocalStorageRef
+        },
+        {
+          provide: SessionstorageRef,
+          useClass: MockSessionStorageRef
         }
       ],
       declarations: [AppComponent]
@@ -36,6 +50,7 @@ describe('AppComponent', () => {
     consoleRef = TestBed.inject(ConsoleRef);
     localstorageRef = TestBed.inject(LocalstorageRef) as unknown as MockLocalStorageRef;
     locationRef = TestBed.inject(LocationRef);
+    sessionStorageRef = TestBed.inject(SessionstorageRef) as unknown as MockSessionStorageRef;
     windowRef = TestBed.inject(WindowRef);
   }));
 
@@ -91,6 +106,27 @@ describe('AppComponent', () => {
       // hash value gets changed.
       fixture.componentInstance.locationRefHashSet();
       expect(mockLocation.hash).not.toBeNull();
+    });
+  });
+
+  describe('SessionstorageRef', () => {
+    it('should set a sessionStorage item', () => {
+      // Stub out the setItem method using our mocked
+      // out sessionStorage object from above.
+      const spy = spyOn(sessionStorageRef, 'setItem').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.sessionstorageRefSet();
+      expect(spy).toHaveBeenCalled();
+    });
+    it('should clear sessionStorage items', () => {
+      // Stub out the clear method using our mocked
+      // out sessionStorage object from above.
+      const spy = spyOn(sessionStorageRef, 'clear').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.sessionstorageRefClear();
+      expect(spy).toHaveBeenCalled();
     });
   });
 

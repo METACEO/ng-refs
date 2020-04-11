@@ -37,7 +37,6 @@ describe('ng-refs-demo', () => {
       cy.get('#localstorageRefTimestamp').should('not.have.text', 'timestamp: undefined')
     });
     it('should clear the localstorage items', () => {
-      cy.get('#localstorageRefTimestamp').should('have.text', 'timestamp: undefined');
       cy.get('#localstorageRefSet').click();
       cy.get('#localstorageRefTimestamp').should('not.have.text', 'timestamp: undefined');
       cy.get('#localstorageRefClear').click();
@@ -58,6 +57,22 @@ describe('ng-refs-demo', () => {
       cy.get('#locationRefHashSet')
         .click()
         .then(() => expect(locationReference.hash).to.not.be.equal(originalHashValue));
+    });
+  });
+  describe('SessionstorageRef', () => {
+
+    beforeEach(() => cy.visit('/'));
+
+    it('should change the sessionstorage timestamp', () => {
+      cy.get('#sessionstorageRefTimestamp').should('have.text', 'timestamp: undefined');
+      cy.get('#sessionstorageRefSet').click();
+      cy.get('#sessionstorageRefTimestamp').should('not.have.text', 'timestamp: undefined')
+    });
+    it('should clear the sessionstorage items', () => {
+      cy.get('#sessionstorageRefSet').click();
+      cy.get('#sessionstorageRefTimestamp').should('not.have.text', 'timestamp: undefined');
+      cy.get('#sessionstorageRefClear').click();
+      cy.get('#sessionstorageRefTimestamp').should('have.text', 'timestamp: undefined');
     });
   });
   describe('WindowRef', () => {

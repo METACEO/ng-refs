@@ -13,6 +13,13 @@
 
 <button id="locationRefHashSet" (click)="locationRefHashSet()">location.hash = '...'</button>
 
+<h1>SessionstorageRef</h1>
+
+<p id="sessionstorageRefTimestamp">timestamp: {{sessionstorageRefTimestamp || 'undefined'}}</p>
+
+<button id="sessionstorageRefSet" (click)="sessionstorageRefSet()">sessionStorage.setItem('timestamp', ...)</button>
+<button id="sessionstorageRefClear" (click)="sessionstorageRefClear()">sessionStorage.clear()</button>
+
 <h1>WindowRef</h1>
 
 <button id="windowRefAlert" (click)="windowRefAlert()">window.alert('hello world')</button>

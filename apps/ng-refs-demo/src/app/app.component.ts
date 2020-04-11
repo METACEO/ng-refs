@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ConsoleRef, LocalstorageRef, LocationRef, WindowRef } from 'ng-refs';
+import { ConsoleRef, LocalstorageRef, LocationRef, SessionstorageRef, WindowRef } from 'ng-refs';
 
 @Component({
   selector: 'ng-refs-demo-root',
@@ -8,9 +8,11 @@ import { ConsoleRef, LocalstorageRef, LocationRef, WindowRef } from 'ng-refs';
 })
 export class AppComponent {
   public localstorageRefTimestamp = this.localstorageRef.native.getItem('timestamp');
+  public sessionstorageRefTimestamp = this.sessionstorageRef.native.getItem('timestamp');
   constructor(private readonly consoleRef: ConsoleRef,
               private readonly localstorageRef: LocalstorageRef,
               private readonly locationRef: LocationRef,
+              private readonly sessionstorageRef: SessionstorageRef,
               private readonly windowRef: WindowRef) {
   }
   public consoleRefLog(): void {
@@ -26,6 +28,14 @@ export class AppComponent {
   }
   public locationRefHashSet(): void {
     this.locationRef.native.hash = Date.now().toString();
+  }
+  public sessionstorageRefSet(): void {
+    this.sessionstorageRefTimestamp = Date.now().toString();
+    this.sessionstorageRef.native.setItem('timestamp', this.sessionstorageRefTimestamp);
+  }
+  public sessionstorageRefClear(): void {
+    this.sessionstorageRefTimestamp = undefined;
+    this.sessionstorageRef.native.clear();
   }
   public windowRefAlert(): void {
     this.windowRef.native.alert('hello world');
