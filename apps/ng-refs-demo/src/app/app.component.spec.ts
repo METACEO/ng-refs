@@ -109,7 +109,7 @@ describe('AppComponent', () => {
     });
   });
 
-  describe('SessionstorageRef', () => {
+  describe('sessionstorageRef', () => {
     it('should set a sessionStorage item', () => {
       // Stub out the setItem method using our mocked
       // out sessionStorage object from above.
