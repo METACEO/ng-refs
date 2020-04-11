@@ -1,4 +1,5 @@
 export * from './lib/ng-refs.module';
+export * from './lib/refs/animationframe.ref';
 export * from './lib/refs/console.ref';
 export * from './lib/refs/interval.ref';
 export * from './lib/refs/localstorage.ref';

@@ -1,4 +1,21 @@
 describe('ng-refs-demo', () => {
+  describe('AnimationFrameRef', () => {
+
+    beforeEach(() => cy.visit('/'));
+
+    it('should set the animationFrameRef result', () => {
+      cy.get('#animationFrameRefResult').should('have.text', 'undefined');
+      cy.get('#animationFrameRefStart').click();
+      cy.get('#animationFrameRefResult').should('have.text', 'Starting FPS...')
+    });
+    it('should clear the animationFrameRef result', () => {
+      cy.get('#animationFrameRefResult').should('have.text', 'undefined');
+      cy.get('#animationFrameRefStart').click();
+      cy.get('#animationFrameRefResult').should('have.text', 'Starting FPS...');
+      cy.get('#animationFrameRefCancel').click();
+      cy.get('#animationFrameRefResult').should('have.text', 'undefined');
+    });
+  });
   describe('ConsoleRef', () => {
     let consoleLogStub: sinon.SinonStub;
     let logs = [];

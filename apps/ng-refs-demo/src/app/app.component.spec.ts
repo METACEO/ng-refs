@@ -1,5 +1,6 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import {
+  AnimationFrameRef,
   ConsoleRef,
   IntervalRef,
   LocalstorageRef,
@@ -26,6 +27,7 @@ class MockTimerRef {
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
+  let animationFrameRef: AnimationFrameRef;
   let consoleRef: ConsoleRef;
   let intervalRef: MockTimerRef;
   let localstorageRef: MockStorageRef;
@@ -37,6 +39,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
+        AnimationFrameRef,
         ConsoleRef,
         LocationRef,
         WindowRef,
@@ -60,6 +63,7 @@ describe('AppComponent', () => {
       declarations: [AppComponent]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
+    animationFrameRef = TestBed.inject(AnimationFrameRef);
     consoleRef = TestBed.inject(ConsoleRef);
     intervalRef = TestBed.inject(IntervalRef) as unknown as MockTimerRef;
     localstorageRef = TestBed.inject(LocalstorageRef) as unknown as MockStorageRef;
@@ -72,6 +76,31 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
+  });
+
+  describe('animationFrameRef', () => {
+    it('should set a animationFrameRef handler', () => {
+      // Stub out the nativeRequest method using our mocked
+      // out animationFrameRef object from above.
+      const spy = spyOn(animationFrameRef, 'nativeRequest').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.animationFrameRefStart();
+      expect(spy).toHaveBeenCalled();
+    });
+    it('should cancel any animationFrameRef handler', () => {
+      // Stub out the nativeCancel method using our mocked
+      // out animationFrameRef object from above.
+      const spy = spyOn(animationFrameRef, 'nativeCancel').and.stub();
+      // Also set animationFrameRefInstance to something
+      // we can track for expectations.
+      const mockInstance = {};
+      fixture.componentInstance.animationFrameRefInstance = mockInstance;
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.animationFrameRefCancel();
+      expect(spy).toHaveBeenCalledWith(mockInstance);
+    });
   });
 
   describe('consoleRefLog', () => {
