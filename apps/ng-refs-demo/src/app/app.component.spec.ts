@@ -1,9 +1,17 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { ConsoleRef, LocalstorageRef, LocationRef, SessionstorageRef, WindowRef } from 'ng-refs';
+import {
+  ConsoleRef,
+  IntervalRef,
+  LocalstorageRef,
+  LocationRef,
+  SessionstorageRef,
+  TimeoutRef,
+  WindowRef
+} from 'ng-refs';
 
 import { AppComponent } from './app.component';
 
-class MockLocalStorageRef {
+class MockStorageRef {
   clear = () => void 0;
   getItem = () => void 0;
   setItem = () => void 0;
@@ -11,22 +19,19 @@ class MockLocalStorageRef {
     return this;
   }
 }
-
-class MockSessionStorageRef {
-  clear = () => void 0;
-  getItem = () => void 0;
-  setItem = () => void 0;
-  get native() {
-    return this;
-  }
+class MockTimerRef {
+  nativeClear = () => void 0;
+  nativeSet = () => void 0;
 }
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let consoleRef: ConsoleRef;
-  let localstorageRef: MockLocalStorageRef;
+  let intervalRef: MockTimerRef;
+  let localstorageRef: MockStorageRef;
   let locationRef: LocationRef;
-  let sessionStorageRef: MockSessionStorageRef;
+  let sessionStorageRef: MockStorageRef;
+  let timeoutRef: MockTimerRef;
   let windowRef: WindowRef;
 
   beforeEach(async(() => {
@@ -36,21 +41,31 @@ describe('AppComponent', () => {
         LocationRef,
         WindowRef,
         {
+          provide: IntervalRef,
+          useClass: MockTimerRef
+        },
+        {
           provide: LocalstorageRef,
-          useClass: MockLocalStorageRef
+          useClass: MockStorageRef
         },
         {
           provide: SessionstorageRef,
-          useClass: MockSessionStorageRef
+          useClass: MockStorageRef
+        },
+        {
+          provide: TimeoutRef,
+          useClass: MockTimerRef
         }
       ],
       declarations: [AppComponent]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     consoleRef = TestBed.inject(ConsoleRef);
-    localstorageRef = TestBed.inject(LocalstorageRef) as unknown as MockLocalStorageRef;
+    intervalRef = TestBed.inject(IntervalRef) as unknown as MockTimerRef;
+    localstorageRef = TestBed.inject(LocalstorageRef) as unknown as MockStorageRef;
     locationRef = TestBed.inject(LocationRef);
-    sessionStorageRef = TestBed.inject(SessionstorageRef) as unknown as MockSessionStorageRef;
+    sessionStorageRef = TestBed.inject(SessionstorageRef) as unknown as MockStorageRef;
+    timeoutRef = TestBed.inject(TimeoutRef) as unknown as MockTimerRef;
     windowRef = TestBed.inject(WindowRef);
   }));
 
@@ -72,6 +87,31 @@ describe('AppComponent', () => {
       // stub above has been called correctly.
       fixture.componentInstance.consoleRefLog();
       expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('intervalRef', () => {
+    it('should set a intervalRef handler', () => {
+      // Stub out the nativeSet method using our mocked
+      // out intervalRef object from above.
+      const spy = spyOn(intervalRef, 'nativeSet').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.intervalRefSet();
+      expect(spy).toHaveBeenCalled();
+    });
+    it('should clear the intervalRef handler', () => {
+      // Stub out the nativeClear method using our mocked
+      // out intervalRef object from above.
+      const spy = spyOn(intervalRef, 'nativeClear').and.stub();
+      // Also set intervalRefInstance to something we can
+      // track for expectations.
+      const mockInstance = {};
+      fixture.componentInstance.intervalRefInstance = mockInstance;
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.intervalRefClear();
+      expect(spy).toHaveBeenCalledWith(mockInstance);
     });
   });
 
@@ -127,6 +167,31 @@ describe('AppComponent', () => {
       // stub above has been called correctly.
       fixture.componentInstance.sessionstorageRefClear();
       expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('timeoutRef', () => {
+    it('should set a timeoutRef handler', () => {
+      // Stub out the nativeSet method using our mocked
+      // out timeoutRef object from above.
+      const spy = spyOn(timeoutRef, 'nativeSet').and.stub();
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.timeoutRefSet();
+      expect(spy).toHaveBeenCalled();
+    });
+    it('should clear the timeoutRef handler', () => {
+      // Stub out the nativeClear method using our mocked
+      // out timeoutRef object from above.
+      const spy = spyOn(timeoutRef, 'nativeClear').and.stub();
+      // Also set timeoutRefInstance to something we can
+      // track for expectations.
+      const mockInstance = {};
+      fixture.componentInstance.timeoutRefInstance = mockInstance;
+      // Call the component's method and make sure our
+      // stub above has been called correctly.
+      fixture.componentInstance.timeoutRefClear();
+      expect(spy).toHaveBeenCalledWith(mockInstance);
     });
   });
 

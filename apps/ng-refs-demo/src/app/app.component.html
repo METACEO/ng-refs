@@ -2,6 +2,13 @@
 
 <button id="consoleRefLog" (click)="consoleRefLog()">console.log('The time is: ...')</button>
 
+<h1>IntervalRef</h1>
+
+<p id="intervalRefResult">{{intervalRefMessage || 'undefined'}}</p>
+
+<button id="intervalRefSet" (click)="intervalRefSet()">setInterval(..., 1000)</button>
+<button id="intervalRefClear" (click)="intervalRefClear()">clearInterval(...)</button>
+
 <h1>LocalstorageRef</h1>
 
 <p id="localstorageRefTimestamp">timestamp: {{localstorageRefTimestamp || 'undefined'}}</p>
@@ -19,6 +26,13 @@
 
 <button id="sessionstorageRefSet" (click)="sessionstorageRefSet()">sessionStorage.setItem('timestamp', ...)</button>
 <button id="sessionstorageRefClear" (click)="sessionstorageRefClear()">sessionStorage.clear()</button>
+
+<h1>TimeoutRef</h1>
+
+<p id="timeoutRefResult">{{timeoutRefMessage || 'undefined'}}</p>
+
+<button id="timeoutRefSet" (click)="timeoutRefSet()">setTimeout(..., 5000)</button>
+<button id="timeoutRefClear" (click)="timeoutRefClear()">clearTimeout(...)</button>
 
 <h1>WindowRef</h1>
 

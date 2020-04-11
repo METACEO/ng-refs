@@ -27,6 +27,22 @@ describe('ng-refs-demo', () => {
         });
     });
   });
+  describe('IntervalRef', () => {
+
+    beforeEach(() => cy.visit('/'));
+
+    it('should set the intervalRef message', () => {
+      cy.get('#intervalRefResult').should('have.text', 'undefined');
+      cy.get('#intervalRefSet').click();
+      cy.get('#intervalRefResult').should('have.text', 'Starting interval...')
+    });
+    it('should clear the intervalRef message', () => {
+      cy.get('#intervalRefSet').click();
+      cy.get('#intervalRefResult').should('have.text', 'Starting interval...');
+      cy.get('#intervalRefClear').click();
+      cy.get('#intervalRefResult').should('have.text', 'undefined');
+    });
+  });
   describe('LocalstorageRef', () => {
 
     beforeEach(() => cy.visit('/'));
@@ -73,6 +89,22 @@ describe('ng-refs-demo', () => {
       cy.get('#sessionstorageRefTimestamp').should('not.have.text', 'timestamp: undefined');
       cy.get('#sessionstorageRefClear').click();
       cy.get('#sessionstorageRefTimestamp').should('have.text', 'timestamp: undefined');
+    });
+  });
+  describe('TimeoutRef', () => {
+
+    beforeEach(() => cy.visit('/'));
+
+    it('should set the timeoutRef message', () => {
+      cy.get('#timeoutRefResult').should('have.text', 'undefined');
+      cy.get('#timeoutRefSet').click();
+      cy.get('#timeoutRefResult').should('have.text', 'Starting 5 second timer...')
+    });
+    it('should clear the timeoutRef message', () => {
+      cy.get('#timeoutRefSet').click();
+      cy.get('#timeoutRefResult').should('have.text', 'Starting 5 second timer...');
+      cy.get('#timeoutRefClear').click();
+      cy.get('#timeoutRefResult').should('have.text', 'undefined');
     });
   });
   describe('WindowRef', () => {
