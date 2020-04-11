@@ -37,6 +37,11 @@ export class AppComponent {
     const oneSecond = 1000;
     const dateGenerator = () => new Date();
     this.intervalRefMessage = 'Starting interval...'
+    // Clear-out any existing interval:
+    if (this.intervalRefInstance) {
+      this.intervalRef.nativeClear(this.intervalRefInstance);
+    }
+    // Set a new interval instance:
     this.intervalRefInstance = this.intervalRef
       .nativeSet(handler, oneSecond, dateGenerator);
   }
@@ -68,6 +73,11 @@ export class AppComponent {
     const fiveSeconds = 1000 * 5;
     const dateGenerator = () => new Date();
     this.timeoutRefMessage = 'Starting 5 second timer...'
+    // Clear-out any existing timeout:
+    if (this.timeoutRefInstance) {
+      this.timeoutRef.nativeClear(this.timeoutRefInstance);
+    }
+    // Set a new timeout instance:
     this.timeoutRefInstance = this.timeoutRef
       .nativeSet(handler, fiveSeconds, dateGenerator);
   }
