@@ -27,7 +27,7 @@ describe('ng-refs-demo', () => {
         });
     });
   });
-  describe('LocationRef', () => {
+  describe('LocalstorageRef', () => {
 
     beforeEach(() => cy.visit('/'));
 
