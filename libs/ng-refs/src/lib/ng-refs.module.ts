@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AnimationFrameRef } from './refs/animationframe.ref';
 import { ConsoleRef } from './refs/console.ref';
+import { GetComputedStyleRef } from './refs/get-computed-style.ref';
 import { IntervalRef } from './refs/interval.ref';
 import { LocalstorageRef } from './refs/localstorage.ref';
 import { LocationRef } from './refs/location.ref';
@@ -13,6 +14,7 @@ import { WindowRef } from './refs/window.ref';
   providers: [
     AnimationFrameRef,
     ConsoleRef,
+    GetComputedStyleRef,
     IntervalRef,
     LocalstorageRef,
     LocationRef,

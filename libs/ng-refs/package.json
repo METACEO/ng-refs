@@ -23,6 +23,7 @@
     "requestAnimationFrame",
     "cancelAnimationFrame",
     "console",
+    "getComputedStyle",
     "interval",
     "setInterval",
     "clearInterval",

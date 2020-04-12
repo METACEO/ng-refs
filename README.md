@@ -8,6 +8,7 @@ Similar to Angular's [own `DOCUMENT` token](https://angular.io/api/common/DOCUME
 
 - `AnimationFrameRef`
 - `ConsoleRef`
+- `GetComputedStyleRef`
 - `IntervalRef`
 - `LocalStorageRef`
 - `LocationRef`
