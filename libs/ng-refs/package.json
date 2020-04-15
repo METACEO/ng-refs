@@ -1,6 +1,6 @@
 {
   "name": "ng-refs",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Practice better dependency injection of browser APIs within your Angular components and services.",
   "repository": {
     "type": "git",

@@ -2,7 +2,14 @@
 
 ![Publish ng-refs Library](https://github.com/METACEO/ng-refs/workflows/Publish%20ng-refs%20Library/badge.svg?branch=master)
 
-Practice better dependency injection of browser APIs within your Angular components and services.
+Practice better dependency injection of browser APIs within your Angular codebase!
+
+Are we missing a browser API that your project uses?.. [suggestions and contributions](https://github.com/METACEO/ng-refs/issues) are welcomed!
+
+| Type of use     | Code Example                   |
+| --------------- | ------------------------------ |
+| ❌ Direct-use    | ![before](./README-before.png) |
+| ✅ Via reference | ![after](./README-after.png)   |
 
 Similar to Angular's [own `DOCUMENT` token](https://angular.io/api/common/DOCUMENT), the `ng-refs` package includes some other commonly used browser APIs wrapped up as Angular providers:
 
@@ -15,8 +22,6 @@ Similar to Angular's [own `DOCUMENT` token](https://angular.io/api/common/DOCUME
 - `SessionStorageRef`
 - `TimeoutRef`
 - `WindowRef`
-
-For example, don't directly use the `window` object in your Angular components or services. Instead use the injected `WindowRef` provider that `ng-refs` offers.
 
 In this [Nx](https://nx.dev) monorepo, you can find the following:
 
