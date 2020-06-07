@@ -1,8 +1,3 @@
-import { Injectable } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
-@Injectable()
-export class ConsoleRef {
-  get native(): Console {
-    return console;
-  }
-}
+export const ConsoleRef = new InjectionToken('ng-refs-console');

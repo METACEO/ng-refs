@@ -13,14 +13,29 @@ import { WindowRef } from './refs/window.ref';
 @NgModule({
   providers: [
     AnimationFrameRef,
-    ConsoleRef,
+    {
+      provide: ConsoleRef,
+      useValue: console
+    },
     GetComputedStyleRef,
     IntervalRef,
-    LocalstorageRef,
-    LocationRef,
-    SessionstorageRef,
+    {
+      provide: LocalstorageRef,
+      useValue: localStorage
+    },
+    {
+      provide: LocationRef,
+      useValue: location
+    },
+    {
+      provide: SessionstorageRef,
+      useValue: sessionStorage
+    },
     TimeoutRef,
-    WindowRef
+    {
+      provide: WindowRef,
+      useValue: window
+    }
   ]
 })
 export class NgRefsModule {}

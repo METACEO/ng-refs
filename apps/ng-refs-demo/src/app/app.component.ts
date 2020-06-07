@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   AnimationFrameRef,
   ConsoleRef,
@@ -26,18 +26,18 @@ export class AppComponent {
   public animationFrameRefResult;
   public intervalRefMessage;
   public intervalRefInstance;
-  public localstorageRefTimestamp = this.localstorageRef.native.getItem('timestamp');
-  public sessionstorageRefTimestamp = this.sessionstorageRef.native.getItem('timestamp');
+  public localstorageRefTimestamp = this.localstorageRef.getItem('timestamp');
+  public sessionstorageRefTimestamp = this.sessionstorageRef.getItem('timestamp');
   public timeoutRefMessage;
   public timeoutRefInstance;
   constructor(private readonly animationFrameRef: AnimationFrameRef,
-              private readonly consoleRef: ConsoleRef,
+              @Inject(ConsoleRef) readonly consoleRef: Console,
               private readonly intervalRef: IntervalRef,
-              private readonly localstorageRef: LocalstorageRef,
-              private readonly locationRef: LocationRef,
-              private readonly sessionstorageRef: SessionstorageRef,
+              @Inject(LocalstorageRef) readonly localstorageRef: Storage,
+              @Inject(LocationRef) readonly locationRef: Location,
+              @Inject(SessionstorageRef) readonly sessionstorageRef: Storage,
               private readonly timeoutRef: TimeoutRef,
-              private readonly windowRef: WindowRef) {
+              @Inject(WindowRef) readonly windowRef: Window) {
   }
   public animationFrameRefStart(): void {
     // This counter, once called later, will increase
@@ -74,7 +74,7 @@ export class AppComponent {
     this.intervalRef.nativeClear(this.animationFrameRefInterval);
   }
   public consoleRefLog(): void {
-    this.consoleRef.native.log(`The time is: ${new Date()}`);
+    this.consoleRef.log(`The time is: ${new Date()}`);
   }
   public intervalRefSet(): void {
     const handler = (dateGetter) => this.intervalRefMessage = `Done at ${dateGetter()}!`;
@@ -93,22 +93,22 @@ export class AppComponent {
   }
   public localstorageRefSet(): void {
     this.localstorageRefTimestamp = Date.now().toString();
-    this.localstorageRef.native.setItem('timestamp', this.localstorageRefTimestamp);
+    this.localstorageRef.setItem('timestamp', this.localstorageRefTimestamp);
   }
   public localstorageRefClear(): void {
     this.localstorageRefTimestamp = undefined;
-    this.localstorageRef.native.clear();
+    this.localstorageRef.clear();
   }
   public locationRefHashSet(): void {
-    this.locationRef.native.hash = Date.now().toString();
+    this.locationRef.hash = Date.now().toString();
   }
   public sessionstorageRefSet(): void {
     this.sessionstorageRefTimestamp = Date.now().toString();
-    this.sessionstorageRef.native.setItem('timestamp', this.sessionstorageRefTimestamp);
+    this.sessionstorageRef.setItem('timestamp', this.sessionstorageRefTimestamp);
   }
   public sessionstorageRefClear(): void {
     this.sessionstorageRefTimestamp = undefined;
-    this.sessionstorageRef.native.clear();
+    this.sessionstorageRef.clear();
   }
   public timeoutRefSet(): void {
     const handler = (dateGetter) => this.timeoutRefMessage = `Done at ${dateGetter()}!`;
@@ -126,6 +126,6 @@ export class AppComponent {
     this.timeoutRef.nativeClear(this.timeoutRefInstance);
   }
   public windowRefAlert(): void {
-    this.windowRef.native.alert('hello world');
+    this.windowRef.alert('hello world');
   }
 }

@@ -1,8 +1,3 @@
-import { Injectable } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
-@Injectable()
-export class LocalstorageRef {
-  get native(): Storage {
-    return localStorage;
-  }
-}
+export const LocalstorageRef = new InjectionToken('ng-refs-locationstorage');

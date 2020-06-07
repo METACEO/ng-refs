@@ -1,8 +1,3 @@
-import { Injectable } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
-@Injectable()
-export class WindowRef {
-  get native(): Window {
-    return window;
-  }
-}
+export const WindowRef = new InjectionToken('ng-refs-window');

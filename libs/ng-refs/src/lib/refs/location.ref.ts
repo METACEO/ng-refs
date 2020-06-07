@@ -1,8 +1,3 @@
-import { Injectable } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
-@Injectable()
-export class LocationRef {
-  get native(): Location {
-    return location;
-  }
-}
+export const LocationRef = new InjectionToken('ng-refs-location');

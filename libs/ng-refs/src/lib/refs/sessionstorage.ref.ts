@@ -1,8 +1,3 @@
-import { Injectable } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
-@Injectable()
-export class SessionstorageRef {
-  get native(): Storage {
-    return sessionStorage;
-  }
-}
+export const SessionstorageRef = new InjectionToken('ng-refs-sessionstorage');
