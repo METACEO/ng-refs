@@ -1,6 +1,6 @@
 {
   "name": "ng-refs",
-  "version": "0.3.2",
+  "version": "10.0.0",
   "description": "Practice better dependency injection of browser APIs within your Angular components and services.",
   "repository": {
     "type": "git",
@@ -42,8 +42,10 @@
   },
   "homepage": "https://github.com/METACEO/ng-refs#readme",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "tslib": "^1.10.0"
+    "@angular/common": "^10.1.0",
+    "@angular/core": "^10.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
