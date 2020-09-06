@@ -38,7 +38,6 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
@@ -84,16 +83,14 @@
               "apps/ng-refs-demo/tsconfig.app.json",
               "apps/ng-refs-demo/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ng-refs-demo/**"]
+            "exclude": ["**/node_modules/**", "!apps/ng-refs-demo/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/ng-refs-demo/jest.config.js",
-            "tsConfig": "apps/ng-refs-demo/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/ng-refs-demo/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       }
@@ -120,7 +117,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/ng-refs-demo-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ng-refs-demo-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/ng-refs-demo-e2e/**/*"]
           }
         }
       }
@@ -150,16 +147,14 @@
               "libs/ng-refs/tsconfig.lib.json",
               "libs/ng-refs/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ng-refs/**"]
+            "exclude": ["**/node_modules/**", "!libs/ng-refs/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/ng-refs/jest.config.js",
-            "tsConfig": "libs/ng-refs/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/ng-refs/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
