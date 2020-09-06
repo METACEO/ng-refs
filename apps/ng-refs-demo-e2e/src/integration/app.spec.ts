@@ -21,7 +21,7 @@ describe('ng-refs-demo', () => {
     let logs = [];
 
     beforeEach(() => cy.visit('/', {
-      onBeforeLoad(window) {
+      onBeforeLoad(window: any) {
         // Because Cypress and other processes will log
         // to the console, we will keep track of all the
         // logs that our stub receives.
